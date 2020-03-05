@@ -60,7 +60,7 @@
       href="/webjars/bootstrap/4.1.2/css/bootstrap.min.css" />
 </head>
 
-<body>
+<body onload="app.init()">
     <div class="left">
         <form action="" method="get" id="form">
         <label for="fname">Author:</label>
@@ -82,10 +82,17 @@
             
             <div id="totalPoints"><h3></h3></div>
         </div>
-        <div class="column">
+        <div class="column"> 
+            <button type="button"  class="btn btn-warning btn-lg disabled" >Create new Blueprint </button>
             <div class="title" id="titlebp"><h3></h3></div>
+
             <canvas id="myCanvas" width="400" height="200" style="border:1px solid #000000;">
             </canvas>
+            <div>
+                <br>
+                <button type="button"  class="btn btn-success" >Save/Update</button>
+                <button type="button"  class="btn btn-danger" >Delete</button>
+            </div>
         </div>
         
     </div>

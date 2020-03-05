@@ -32,6 +32,22 @@ app= (function (){
             }
         });
       };
+    
+    function getOffset(obj) {
+        var offsetLeft = 0;
+        var offsetTop = 0;
+        do {
+          if (!isNaN(obj.offsetLeft)) {
+              offsetLeft += obj.offsetLeft;
+          }
+          if (!isNaN(obj.offsetTop)) {
+              offsetTop += obj.offsetTop;
+          }   
+        } while(obj = obj.offsetParent );
+        return {left: offsetLeft, top: offsetTop};
+    } 
+
+  
     return {
             prueba: function () {
                 author = document.getElementById("fname").value;
@@ -43,6 +59,27 @@ app= (function (){
                 obra = bp;
                 apiclient.getBlueprintsByNameAndAuthor(obra,author,pintar);
                 //apimock.getBlueprintsByNameAndAuthor(obra,author,pintar);  <--- Usando Apimock 
-            }
+            },
+            init: function (){
+                var c = document.getElementById("myCanvas");
+                var ctx = c.getContext("2d");
+                if (window.PointerEvent) {
+                    c.addEventListener("pointerdown", function(event) {
+                    var offset  = getOffset(c);
+                    var x = event.pageX-parseInt(offset.left,10);
+                    var y = event.pageY-parseInt(offset.top,10);
+                    ctx.fillStyle = "#FF0000";
+                    ctx.fillRect(x, y, 5, 5);
+                    });
+                }
+                else {
+                    c.addEventListener("mousedown", function(event){
+                    alert('mousedown at '+event.clientX+','+event.clientY); 
+                });
+                }   
+            },
+            
+       
+
         };
 })();
