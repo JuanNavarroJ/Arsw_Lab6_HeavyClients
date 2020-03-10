@@ -15,6 +15,17 @@ apiclient = (function() {
                     callback(blueprints);
                 },
             });
+        },
+        saveUpdate : function(obra, author, blueprints){
+            alert("Sera que hace algo")
+            $.ajax({
+                url: "/blueprints/"+author+"/"+obra,
+                type: 'PUT',
+                data: blueprints,
+                contentType: "application/json"
+            });
+            alert("talvez")
         }
+
     };
 })();
