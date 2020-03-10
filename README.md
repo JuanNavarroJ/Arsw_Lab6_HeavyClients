@@ -111,19 +111,40 @@
 
 - Add the Save/Update button. Respecting the client's current module architecture, do that by pressing the button:
 
+    En el botón de guardar y actualizar ponemos el evento de app.saveUpdate().
+    ``` html
+        <button type="button"  class="btn btn-success" onclick="app.saveUpdate()">Save/Update</button>
+    ```
+
     - Perform PUT action, with the updated plan, in its corresponding REST resource. 
+    
+    ``` html
+        <button type="button"  class="btn btn-success" onclick="app.saveUpdate()">Save/Update</button>
+    ```
 
     - Perform GET action to the resource /blueprints, to get back all the plans made. 
 
     - The total points of the user are recalculated. 
-
-    For the above, keep in mind:
-
-    - jQuery has no functions for PUT or DELETE requests, so it is necessary to 'configure' them manually through its API for AJAX. For example, to make a PUT request to a resource / resource:
     
-    - For this note that the 'data' property of the object sent to $.ajax must be a jSON object (in text format). If the data you want to send is a JavaScript object, you can convert it to jSON with:
+    Se crea la función salvar y actualizar la cual hace un PUT en el apiClient y luego hace un GET al apiClient.
+    ``` javascript
+    var save = function(){
+        get(blueprints);
+        apiclient.saveUpdate(window.obra, window.author, JSON.stringify(blueprint));
+        apiclient.getBlueprintsByAuthor(window.author,lista);
+    }
+    ```
     
-    - As in this case there are three operations based on callbacks, and that they need to be performed in a specific order, consider how to use JavaScript promises using any of the available examples.
+    ``` javascript
+    saveUpdate : function(obra, author, blueprints){
+        $.ajax({
+            url: "/blueprints/"+author+"/"+obra,
+            type: 'PUT',
+            data: blueprints,
+            contentType: "application/json"
+        });
+    }
+    ```
     
 - Add the 'Create new blueprint' button, so that when pressed:
 
