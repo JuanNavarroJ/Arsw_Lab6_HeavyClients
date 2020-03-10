@@ -126,25 +126,25 @@
 
     - The total points of the user are recalculated. 
     
-    Se crea la función salvar y actualizar la cual hace un PUT en el apiClient y luego hace un GET al apiClient.
-    ``` javascript
-    var save = function(){
-        get(blueprints);
-        apiclient.saveUpdate(window.obra, window.author, JSON.stringify(blueprint));
-        apiclient.getBlueprintsByAuthor(window.author,lista);
-    }
-    ```
-    
-    ``` javascript
-    saveUpdate : function(obra, author, blueprints){
-        $.ajax({
-            url: "/blueprints/"+author+"/"+obra,
-            type: 'PUT',
-            data: blueprints,
-            contentType: "application/json"
-        });
-    }
-    ```
+        Se crea la función salvar y actualizar la cual hace un PUT en el apiClient y luego hace un GET al apiClient.
+        ``` javascript
+        var save = function(){
+            get(blueprints);
+            apiclient.saveUpdate(window.obra, window.author, JSON.stringify(blueprint));
+            apiclient.getBlueprintsByAuthor(window.author,lista);
+        }
+        ```
+
+        ``` javascript
+        saveUpdate : function(obra, author, blueprints){
+            $.ajax({
+                url: "/blueprints/"+author+"/"+obra,
+                type: 'PUT',
+                data: blueprints,
+                contentType: "application/json"
+            });
+        }
+        ```
     
 - Add the 'Create new blueprint' button, so that when pressed:
 
