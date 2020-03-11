@@ -105,11 +105,16 @@ app= (function (){
     };
 
     var save = function(){
-        alert("Funciono")
         var plano = blueprints.filter(obj => {
             return obj.name === obra;
           })[0];
         apiclient.saveUpdate(window.obra, window.author, JSON.stringify(plano));
+        apiclient.getBlueprintsByAuthor(window.author,lista);
+    };
+
+    var deleteBp = function(){
+        alert("Funciono")
+        apiclient.deleteBp(window.obra, window.author);
         apiclient.getBlueprintsByAuthor(window.author,lista);
     }
     return {
@@ -129,6 +134,9 @@ app= (function (){
             },
             saveUpdate: function(){
                 save();
+            },
+            delete: function(){
+                deleteBp();
             }
         };
 })();

@@ -24,7 +24,15 @@ apiclient = (function() {
                 data: blueprints,
                 contentType: "application/json"
             });
-            alert("talvez")
+        },
+
+        deleteBp : function(obra, author){
+            alert("Sera que hace algo")
+            $.ajax({
+                url: "/blueprints/"+author+"/"+obra,
+                type: 'DELETE',
+                contentType: "application/json"
+            });
         }
 
     };
